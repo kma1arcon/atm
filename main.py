@@ -4,29 +4,25 @@ class Account:
         self.balance = balance
 
     def deposit(self, amount):
+        if amount < 0:
+            return "Invalid deposit amount"
         self.balance += amount
-        print(f"New balance: {self.balance}")
-
+        return self.balance
+    
     def withdraw(self, amount):
         if amount > self.balance:
-            print("Insufficient funds")
+            return "Insufficient funds"
         else:
             self.balance -= amount
-            print(f"New balance: {self.balance}")
+            return f"New balance: {self.balance}"
 
     def check_balance(self):
-        print(f"Current balance: {self.balance}")
-
-    def validate_deposit(self, amount):
-        if amount < 0:
-            print("Invalid deposit amount")
-            return False
-        return True
-    
+        return f"Current balance: {self.balance}"
 
 new_account = Account("John Doe", 1000)
-new_account.check_balance()
-new_account.deposit(500)
-new_account.withdraw(200)
-new_account.withdraw(1500)
-new_account.validate_deposit(-100)
+print(new_account.check_balance())
+print(f"Deposit result: {new_account.deposit(500)}")
+print(new_account.withdraw(200))
+print(new_account.withdraw(1500))
+print(f"Deposit result: {new_account.deposit(-500)}")
+print(new_account.check_balance())
